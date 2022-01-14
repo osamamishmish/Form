@@ -1,0 +1,15 @@
+.card-text{
+    display:flex;
+    flex-flow:column
+}
+.hide{
+    display:none;
+}
+.answer-container{
+    display:flex;
+    flex-flow:row;
+}
+.answer{
+    margin-top: -7px;
+    margin-left:10px;
+}
