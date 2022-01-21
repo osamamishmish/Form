@@ -46,6 +46,18 @@ var questionContent = [
 ];
  var resultArr=[];
 
+
+//create the input radio
+$(document).ready(function(){
+    for(let i=0 ;i<questionContent.length-1 ; i++){
+        
+        for (let x=0 ;x<questionContent[i].answers.length ;x++){
+            var theCheckField=document.createElement("input");
+        $(theCheckField).attr("type","radio").addClass("the-check");
+           $(theCheckField).prependTo($(".answer-container").eq(x));
+        }
+     }
+})
  
 
 
@@ -54,8 +66,10 @@ $(document).ready(function(){
         $(questionContent[0].previous).addClass("hide");
         $(".start").on("click",function(){
             $(this).remove();
+            
             $(".the-check").hide();
             $(".content").removeClass("hide");
+            $(".check").attr("name","0");
             $(".card-header").text("Question"+" "+questionContent[0].number);
             $(".card-title").text(questionContent[0].question);
             for(let x=0 ;x<questionContent[0].answers.length;x++){        
@@ -74,6 +88,12 @@ let index=0;
 $(document).ready(function(){
         $(".next").on("click",function(){
             $(".check").addClass("hide");
+            $(".the-check").hide();
+            for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
+                $(".answer-container").eq(i).children().eq(index).show();
+                $(".answer-container").eq(i).children().eq(index).attr("name",index+1);
+            }
+            
             index++;
            
           if(index==1){
@@ -87,18 +107,10 @@ $(document).ready(function(){
         
 $(".card-header").text("Question"+" "+questionContent[index].number);
 $(".card-title").text(questionContent[index].question);
-for(let i=0 ;i<questionContent.length-1;i++){
-    var theCheckField=document.createElement("input");
-    $(theCheckField).attr("type","radio").addClass("the-check");
-    $(theCheckField).prependTo(".answer-container");
 for(let x=0;x<questionContent[index].answers.length;x++){
     
     $(".answer-container").eq(x).children().last().text(questionContent[index].answers[x]);
-    
-
     }
-}
-
 })
 })
 
@@ -107,9 +119,22 @@ for(let x=0;x<questionContent[index].answers.length;x++){
 //previous
 $(document).ready(function(){
     $(".previous").on("click",function(){
+        $(".the-check").hide();
+        for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
+            $(".answer-container").eq(i).children().eq(index-1).show();
+            if(index>0){
+                $(".answer-container").eq(i).children().eq(index-1).attr("name",index);
+            }else{
+                $(".answer-container").eq(i).children().last().attr("name","0");
+            }
+         //   $(".answer-container").eq(i).children().eq(index).attr("name",index);
+        } 
       index--;
+      
+      
       if(index==0){
         $(".check").removeClass("hide");
+        $(".the-check").hide();
       }else{
           $(".check").addClass("hide");
       }
@@ -122,9 +147,7 @@ $(document).ready(function(){
       }else{
         $(".previous").removeClass("hide");
       }
-   
-$(".check").attr("name",index);
-$(".the-check").attr("name",index);
+
 $(".card-header").text("Question"+" "+questionContent[index].number);
 $(".card-title").text(questionContent[index].question);
 for(let x=0;x<questionContent[index].answers.length;x++){
