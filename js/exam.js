@@ -120,17 +120,17 @@ for(let x=0;x<questionContent[index].answers.length;x++){
 $(document).ready(function(){
     $(".previous").on("click",function(){
         $(".the-check").hide();
-        for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
-            $(".answer-container").eq(i).children().eq(index-1).show();
-            if(index>0){
-                $(".answer-container").eq(i).children().eq(index-1).attr("name",index);
-            }else{
-                $(".answer-container").eq(i).children().last().attr("name","0");
-            }
-         //   $(".answer-container").eq(i).children().eq(index).attr("name",index);
-        } 
+       
       index--;
-      
+      for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
+        $(".answer-container").eq(i).children().eq(index-1).show();
+        if(index>0){
+            $(".answer-container").eq(i).children().eq(index-1).attr("name",index);
+        }else{
+            $(".answer-container").eq(i).children().last().attr("name","0");
+        }
+     //   $(".answer-container").eq(i).children().eq(index).attr("name",index);
+    } 
       
       if(index==0){
         $(".check").removeClass("hide");
