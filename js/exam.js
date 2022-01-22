@@ -45,6 +45,7 @@ var questionContent = [
     
 ];
  var resultArr=[];
+resultArr.length=5;
 
 
 //create the input radio
@@ -69,7 +70,10 @@ $(document).ready(function(){
             
             $(".the-check").hide();
             $(".content").removeClass("hide");
-            $(".check").attr("name","0");
+            $(".check").attr("name","0").on("click",function(){
+                resultArr.splice(0,1,$(".check").attr("name")+questionContent[0].answers.indexOf($(this).siblings().last().text()));
+                
+            });
             $(".card-header").text("Question"+" "+questionContent[0].number);
             $(".card-title").text(questionContent[0].question);
             for(let x=0 ;x<questionContent[0].answers.length;x++){        
@@ -91,7 +95,9 @@ $(document).ready(function(){
             $(".the-check").hide();
             for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
                 $(".answer-container").eq(i).children().eq(index).show();
-                $(".answer-container").eq(i).children().eq(index).attr("name",index+1);
+                $(".answer-container").eq(i).children().eq(index).attr("name",index+1).on("click",function(){
+                    resultArr.splice(index+1,1,$(this).attr("name")+questionContent[index+1].answers.indexOf($(this).siblings().last().text()));
+                })
             }
             
             index++;
@@ -104,6 +110,11 @@ $(document).ready(function(){
           }else{
             $(".next").removeClass("hide");
           }
+          if(index==4){
+              $(".result").removeClass("hide");
+          }/*else{
+              $(".result").addClass("hide");
+          }*/
         
 $(".card-header").text("Question"+" "+questionContent[index].number);
 $(".card-title").text(questionContent[index].question);
@@ -120,7 +131,7 @@ for(let x=0;x<questionContent[index].answers.length;x++){
 $(document).ready(function(){
     $(".previous").on("click",function(){
         $(".the-check").hide();
-       
+       $(".result").addClass("hide");
       index--;
       for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
         $(".answer-container").eq(i).children().eq(index-1).show();
@@ -159,3 +170,4 @@ $(".answer").eq(x).text(questionContent[index].answers[x]);
 
 
 
+console.log("result",resultArr);
