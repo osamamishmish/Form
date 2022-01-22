@@ -178,6 +178,7 @@ let result ;
 //Calculate the result
 $(document).ready(function(){
     $(".result").on("click",function(){
+       
        result=0;
     for(let i=0 ;i<resultArr.length ; i++){
        if(questionContent[i].rightAnswer==resultArr[i]){
@@ -189,6 +190,8 @@ $(document).ready(function(){
         $(".card-header").text("The Result");
         $(".card-text").empty();
     $(".card-title").text("you got"+" "+result+" "+"out of 25");
+    $(".result").hide();
+    $(".previous").hide();
     });
     
 $(".content").fadeIn(2000);
