@@ -48,6 +48,35 @@ var questionContent = [
 resultArr.length=questionContent.length;
 
 
+/*let theMail="osama.mishmish16@gmail.com";
+let thePassword="123456";
+var theMailInput=document.querySelector(".email"),
+    thePasswordInput=document.querySelector(".password");
+$(document).ready(function(){
+   // $(".enter").on("click",function(){
+
+    
+  //  window.onload = function() {
+        document.querySelector('.enter').onsubmit = function() {
+          /* do what you want with the form */
+      
+          // Should be triggered on form submit
+         // console.log('hi');
+          // You must return false to prevent the default form behavior
+ /*         return false;
+        }
+     // }
+    
+    if(theMailInput.value==theMail && thePasswordInput.value==thePassword){
+        $(".start").removeClass("hide");
+        
+    }
+//})
+    })*/
+
+
+
+
 //create the input radio
 $(document).ready(function(){
     for(let i=0 ;i<questionContent.length ; i++){
