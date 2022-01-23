@@ -47,7 +47,7 @@ var questionContent = [
  var resultArr=[];
 resultArr.length=questionContent.length;
 
-
+//Email and Password
 /*let theMail="osama.mishmish16@gmail.com";
 let thePassword="123456";
 var theMailInput=document.querySelector(".email"),
@@ -246,127 +246,7 @@ $(document).ready(function(){
 $(".content").fadeIn(2000);
 })
 })
-//start the exam
-/*$(document).ready(function(){
-        
-       
-            for (let index; index<questionContent.length;){
-                $(".next").on("click",function(){
-                    index++;
-                    $(".card-header").text("Question"+" "+questionContent[index].number);
-            $(".card-title").text(questionContent[index].question);
-            for(let x=0 ;x<questionContent[index].answers.length;x++){        
-                $(".answer").eq(x).text(questionContent[index].answers[x]);
-                
-            }
-                    
-                })
-                $(".previous").on("click",function(){
-                    index--;
-                    $(".card-header").text("Question"+" "+questionContent[index].number);
-                    $(".card-title").text(questionContent[index].question);
-                    for(let x=0 ;x<questionContent[index].answers.length;x++){        
-                        $(".answer").eq(x).text(questionContent[index].answers[x]);
-                    }
-                })
-            
-            $(".the-check").eq(index).show().attr("name",index).on("click",function(){
-                resultArr.splice(index,1,$(".the-check").eq(index).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
-                
-            });
-            if (index==questionContent.length-1){
-                $(".next").hide();
-            }else{
-                $(".next").show();
-            }
-             
-        }
-            
-        
-});*/
 
-
-
-
-
-//Next
-/*$(document).ready(function(){
-        $(".next").on("click",function(){
-            $(".check").addClass("hide");
-            $(".the-check").hide();
-            
-            
-            index++;
-            for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
-                $(".answer-container").eq(i).children().eq(index-1).show();
-                $(".answer-container").eq(i).children().eq(index-1).attr("name",index).on("click",function(){
-                    resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
-                })
-            }
-           
-          if(index==1){
-            $(".previous").removeClass("hide");
-          }
-          if(index==questionContent.length-1){
-              $(".next").addClass("hide");
-          }else{
-            $(".next").removeClass("hide");
-          }
-          if(index==4){
-              $(".result").removeClass("hide");
-          }
-        
-$(".card-header").text("Question"+" "+questionContent[index].number);
-$(".card-title").text(questionContent[index].question);
-for(let x=0;x<questionContent[index].answers.length;x++){
-    
-    $(".answer-container").eq(x).children().last().text(questionContent[index].answers[x]);
-    }
-})
-})
-
-
-
-//previous
-$(document).ready(function(){
-    $(".previous").on("click",function(){
-        $(".the-check").hide();
-       $(".result").addClass("hide");
-      index--;
-      for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
-        $(".answer-container").eq(i).children().eq(index-1).show();
-        if(index>0){
-            $(".answer-container").eq(i).children().eq(index-1).attr("name",index);
-        }else{
-            $(".answer-container").eq(i).children().last().attr("name","0");
-        }
-     //   $(".answer-container").eq(i).children().eq(index).attr("name",index);
-    } 
-      
-      if(index==0){
-        $(".check").removeClass("hide");
-        $(".the-check").hide();
-      }else{
-          $(".check").addClass("hide");
-      }
-    
-      if(index<questionContent.length-1){
-        $(".next").removeClass("hide");
-      }
-     if(index==0){
-          $(".previous").addClass("hide");
-      }else{
-        $(".previous").removeClass("hide");
-      }
-
-$(".card-header").text("Question"+" "+questionContent[index].number);
-$(".card-title").text(questionContent[index].question);
-for(let x=0;x<questionContent[index].answers.length;x++){
- 
-$(".answer").eq(x).text(questionContent[index].answers[x]);
-} 
-})
-});*/
 
 
 
