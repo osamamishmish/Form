@@ -46,7 +46,7 @@ var questionContent = [
 ];
  var resultArr=[];
 resultArr.length=questionContent.length;
-
+/*
 //Email and Password
 let theMail="osama_mishmish94@gmail.com";
 let thePassword="123456";
@@ -64,7 +64,7 @@ $(document).ready(function(){
         
     }
 })
-    })
+    })*/
 
 
 
