@@ -60,6 +60,10 @@ $(document).ready(function(){
      }
 })
  
+
+
+
+
 let index=0;
 //Start the exam
 $(document).ready(function(){
@@ -99,7 +103,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".next").on("click",function(){
         "use strict";
-        
+        $(".content").hide();
         index++;
         if(index==questionContent.length-1){
             $(".next").hide();
@@ -115,6 +119,7 @@ $(document).ready(function(){
         
         $(".card-header").text("Question"+" "+questionContent[index].number);
         $(".card-title").text(questionContent[index].question);
+       // $(".content").fadeOut().fadeIn(2000);
         for(let x=0 ;x<questionContent[index].answers.length;x++){        
             $(".answer").eq(x).text(questionContent[index].answers[x]);
             
@@ -125,8 +130,11 @@ $(document).ready(function(){
                 resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
             })
         }
+        $(".content").fadeIn(2000);
     })
 })
+
+
 
 
 
@@ -134,6 +142,7 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".previous").on("click",function(){
         "use strict";
+        $(".content").hide();
         index--;
         if(index<questionContent.length-1){
             $(".next").show();
@@ -145,6 +154,7 @@ $(document).ready(function(){
         $(".the-check").hide();
         $(".card-header").text("Question"+" "+questionContent[index].number);
         $(".card-title").text(questionContent[index].question);
+        
         for(let x=0 ;x<questionContent[index].answers.length;x++){        
             $(".answer").eq(x).text(questionContent[index].answers[x]);
             
@@ -155,8 +165,11 @@ $(document).ready(function(){
                 resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
             })
         }
+        $(".content").fadeIn(2000);
     })
 })
+
+
 
 //Behaviour of the form
 $(document).ready(function(){
@@ -175,9 +188,14 @@ $(document).ready(function(){
 console.log("result",resultArr);
 
 
+
+
+
+
+
+//Calculate the result
 let result ;
 let mark =questionContent.length*5;
-//Calculate the result
 $(document).ready(function(){
     $(".result").on("click",function(){
        
