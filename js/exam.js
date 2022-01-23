@@ -13,7 +13,7 @@ var questionContent = [
         answers: ["Egyptian", "American", "England"],
         rightAnswer: 10,
         number: "Two",
-        theCheck : document.createElement("input"),
+        
     },
 
     {
@@ -21,7 +21,7 @@ var questionContent = [
         answers: ["Africa", "Asia", "Europe"],
         rightAnswer: 20,
         number: "Three",
-        theCheck : document.createElement("input"),
+        
         
     },
     {
@@ -29,7 +29,7 @@ var questionContent = [
         answers: ["1910", "1907", "1903"],
         rightAnswer: 31,
         number: "Four",
-        theCheck : document.createElement("input"),
+        
        
     },
     {
@@ -37,7 +37,7 @@ var questionContent = [
         answers: ["2012", "2008", "2010"],
         rightAnswer: 42,
         number: "Five",
-        theCheck : document.createElement("input"),
+        
         
     },
    
@@ -45,12 +45,12 @@ var questionContent = [
     
 ];
  var resultArr=[];
-resultArr.length=5;
+resultArr.length=questionContent.length;
 
 
 //create the input radio
 $(document).ready(function(){
-    for(let i=0 ;i<questionContent.length-1 ; i++){
+    for(let i=0 ;i<questionContent.length ; i++){
         
         for (let x=0 ;x<questionContent[i].answers.length ;x++){
             var theCheckField=document.createElement("input");
@@ -60,36 +60,190 @@ $(document).ready(function(){
      }
 })
  
-
-
-//start the exam
+let index=0;
+//Start the exam
 $(document).ready(function(){
-        $(questionContent[0].previous).addClass("hide");
-        $(".start").on("click",function(){
-            $(this).remove();
+    $(".start").on("click",function(){
+        $(this).remove();
+        
+        $(".the-check").hide();
+        $(".content").removeClass("hide");
+        
+        
+       
+        $(".card-header").text("Question"+" "+questionContent[index].number);
+        $(".card-title").text(questionContent[index].question);
+        for(let x=0 ;x<questionContent[index].answers.length;x++){        
+            $(".answer").eq(x).text(questionContent[index].answers[x]);
             
-            $(".the-check").hide();
-            $(".content").removeClass("hide");
-            $(".check").attr("name","0").on("click",function(){
-                resultArr.splice(0,1,$(".check").attr("name")+questionContent[0].answers.indexOf($(this).siblings().last().text()));
-                
-            });
-            $(".card-header").text("Question"+" "+questionContent[0].number);
-            $(".card-title").text(questionContent[0].question);
-            for(let x=0 ;x<questionContent[0].answers.length;x++){        
-                $(".answer").eq(x).text(questionContent[0].answers[x]);
-                
-            } 
-});
+        }
+        for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
+            $(".answer-container").eq(i).children().eq(index).show();
+            $(".answer-container").eq(i).children().eq(index).attr("name",index).on("click",function(){
+                resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
+            })
+        }
+    })
 })
 
 
-var theContainer=document.querySelectorAll(".answer-container");
-let index=0;
+
+
+
+
+
+
 
 
 //Next
 $(document).ready(function(){
+    $(".next").on("click",function(){
+        "use strict";
+        
+        index++;
+        if(index==questionContent.length-1){
+            $(".next").hide();
+             $(".result").show();
+         }
+        $(".the-check").hide();
+        if(index>0){
+            $(".previous").show();
+        }else{
+            $(".previous").hide();
+        }
+        
+        
+        $(".card-header").text("Question"+" "+questionContent[index].number);
+        $(".card-title").text(questionContent[index].question);
+        for(let x=0 ;x<questionContent[index].answers.length;x++){        
+            $(".answer").eq(x).text(questionContent[index].answers[x]);
+            
+        }
+        for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
+            $(".answer-container").eq(i).children().eq(index).show();
+            $(".answer-container").eq(i).children().eq(index).attr("name",index).on("click",function(){
+                resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
+            })
+        }
+    })
+})
+
+
+
+//previous
+$(document).ready(function(){
+    $(".previous").on("click",function(){
+        "use strict";
+        index--;
+        if(index<questionContent.length-1){
+            $(".next").show();
+            $(".result").hide();
+        }
+        if(index==0){
+            $(".previous").hide();
+        }
+        $(".the-check").hide();
+        $(".card-header").text("Question"+" "+questionContent[index].number);
+        $(".card-title").text(questionContent[index].question);
+        for(let x=0 ;x<questionContent[index].answers.length;x++){        
+            $(".answer").eq(x).text(questionContent[index].answers[x]);
+            
+        }
+        for(let i=0 ;i<$("div[class='answer-container']").length ;i++){
+            $(".answer-container").eq(i).children().eq(index).show();
+            $(".answer-container").eq(i).children().eq(index).attr("name",index).on("click",function(){
+                resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
+            })
+        }
+    })
+})
+
+//Behaviour of the form
+$(document).ready(function(){
+    $(function(){
+        if(index==questionContent.length-1){
+            $(".next").hide();
+            $(".result").show();
+        }else{
+            $(".next").show();
+            $(".result").hide();
+        }
+    })
+})
+
+
+console.log("result",resultArr);
+
+
+let result ;
+let mark =questionContent.length*5;
+//Calculate the result
+$(document).ready(function(){
+    $(".result").on("click",function(){
+       
+       result=0;
+    for(let i=0 ;i<resultArr.length ; i++){
+       if(questionContent[i].rightAnswer==resultArr[i]){
+        
+           result=result+5;  
+       }   
+    }
+    $(".content").fadeOut(2000,function(){
+        $(".card-header").text("The Result");
+        $(".card-text").empty();
+    $(".card-title").text("you got"+" "+result+" "+"out of "+mark );
+    $(".result").hide();
+    $(".previous").hide();
+    });
+    
+$(".content").fadeIn(2000);
+})
+})
+//start the exam
+/*$(document).ready(function(){
+        
+       
+            for (let index; index<questionContent.length;){
+                $(".next").on("click",function(){
+                    index++;
+                    $(".card-header").text("Question"+" "+questionContent[index].number);
+            $(".card-title").text(questionContent[index].question);
+            for(let x=0 ;x<questionContent[index].answers.length;x++){        
+                $(".answer").eq(x).text(questionContent[index].answers[x]);
+                
+            }
+                    
+                })
+                $(".previous").on("click",function(){
+                    index--;
+                    $(".card-header").text("Question"+" "+questionContent[index].number);
+                    $(".card-title").text(questionContent[index].question);
+                    for(let x=0 ;x<questionContent[index].answers.length;x++){        
+                        $(".answer").eq(x).text(questionContent[index].answers[x]);
+                    }
+                })
+            
+            $(".the-check").eq(index).show().attr("name",index).on("click",function(){
+                resultArr.splice(index,1,$(".the-check").eq(index).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
+                
+            });
+            if (index==questionContent.length-1){
+                $(".next").hide();
+            }else{
+                $(".next").show();
+            }
+             
+        }
+            
+        
+});*/
+
+
+
+
+
+//Next
+/*$(document).ready(function(){
         $(".next").on("click",function(){
             $(".check").addClass("hide");
             $(".the-check").hide();
@@ -113,9 +267,7 @@ $(document).ready(function(){
           }
           if(index==4){
               $(".result").removeClass("hide");
-          }/*else{
-              $(".result").addClass("hide");
-          }*/
+          }
         
 $(".card-header").text("Question"+" "+questionContent[index].number);
 $(".card-title").text(questionContent[index].question);
@@ -167,35 +319,12 @@ for(let x=0;x<questionContent[index].answers.length;x++){
 $(".answer").eq(x).text(questionContent[index].answers[x]);
 } 
 })
-});
+});*/
 
 
 
 
 
 
-let result ;
-//Calculate the result
-$(document).ready(function(){
-    $(".result").on("click",function(){
-       
-       result=0;
-    for(let i=0 ;i<resultArr.length ; i++){
-       if(questionContent[i].rightAnswer==resultArr[i]){
-        
-           result=result+5;  
-       }   
-    }
-    $(".content").fadeOut(2000,function(){
-        $(".card-header").text("The Result");
-        $(".card-text").empty();
-    $(".card-title").text("you got"+" "+result+" "+"out of 25");
-    $(".result").hide();
-    $(".previous").hide();
-    });
-    
-$(".content").fadeIn(2000);
-})
-})
 
-console.log("result",resultArr);
+
