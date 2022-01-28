@@ -124,7 +124,8 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".next").on("click",function(){
         "use strict";
-        $(".content").hide();
+       // $(".content").hide();
+       $(".content").hide({ direction: 'right' }, 800);
         index++;
         if(index==questionContent.length-1){
             $(".next").hide();
@@ -151,7 +152,8 @@ $(document).ready(function(){
                 resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
             })
         }
-        $(".content").fadeIn(2000);
+      //  $(".content").fadeIn(2000);
+      $(".content").show(800);
     })
 })
 
@@ -163,7 +165,8 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".previous").on("click",function(){
         "use strict";
-        $(".content").hide();
+       // $(".content").hide();
+       $(".content").hide( { direction: 'left' }, 800);
         index--;
         if(index<questionContent.length-1){
             $(".next").show();
@@ -186,7 +189,8 @@ $(document).ready(function(){
                 resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
             })
         }
-        $(".content").fadeIn(2000);
+        $(".content").show(800);
+       // $(".content").fadeIn(2000);
     })
 })
 
