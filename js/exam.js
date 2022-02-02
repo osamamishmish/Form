@@ -46,25 +46,38 @@ var questionContent = [
 ];
  var resultArr=[];
 resultArr.length=questionContent.length;
-/*
+
 //Email and Password
-let theMail="osama_mishmish94@gmail.com";
+/*let theMail="osama_mishmish94@gmail.com";
 let thePassword="123456";
 var theMailInput=document.querySelector(".email"),
     thePasswordInput=document.querySelector(".password");
-$(document).ready(function(){
-    $(".enter").on("click",function(){
-
-        
-  
+/*$(document).ready(function(){
     
-    if(theMailInput.value==theMail && thePasswordInput.value==thePassword){
-        window.stop();
-        $(".start").removeClass("hide");
+       //
+            
+            $(".submit").on("click",function(e,theMail,thePassword){
+                
+              //  $(".submit").on("click",function(e){
+                    e.preventDefault();
+            if(theMailInput.value==theMail && thePasswordInput.value==thePassword){
+                
+                $(".start").removeClass("hide");
+                
+            }
+     //  })
         
-    }
 })
     })*/
+   /* function submitInfo(e){
+        "use strict";
+        e.preventDefault();
+        if(theMailInput.value==theMail && thePasswordInput.value==thePassword){
+            
+            $(".start").removeClass("hide");
+            
+        }
+    }*/
 
 
 
@@ -124,7 +137,6 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".next").on("click",function(){
         "use strict";
-       // $(".content").hide();
        $(".content").hide({ direction: 'right' }, 800);
         index++;
         if(index==questionContent.length-1){
@@ -141,7 +153,6 @@ $(document).ready(function(){
         
         $(".card-header").text("Question"+" "+questionContent[index].number);
         $(".card-title").text(questionContent[index].question);
-       // $(".content").fadeOut().fadeIn(2000);
         for(let x=0 ;x<questionContent[index].answers.length;x++){        
             $(".answer").eq(x).text(questionContent[index].answers[x]);
             
@@ -152,7 +163,6 @@ $(document).ready(function(){
                 resultArr.splice(index,1,$(this).attr("name")+questionContent[index].answers.indexOf($(this).siblings().last().text()));
             })
         }
-      //  $(".content").fadeIn(2000);
       $(".content").show(800);
     })
 })
@@ -165,7 +175,6 @@ $(document).ready(function(){
 $(document).ready(function(){
     $(".previous").on("click",function(){
         "use strict";
-       // $(".content").hide();
        $(".content").hide( { direction: 'left' }, 800);
         index--;
         if(index<questionContent.length-1){
@@ -190,7 +199,6 @@ $(document).ready(function(){
             })
         }
         $(".content").show(800);
-       // $(".content").fadeIn(2000);
     })
 })
 
