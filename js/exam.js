@@ -48,27 +48,55 @@ var questionContent = [
 resultArr.length=questionContent.length;
 
 //Email and Password
-/*let theMail="osama_mishmish94@gmail.com";
-let thePassword="123456";
+/*let theMail="osama.mishmish16@gmail.com";
+let thePassword="123456";*/
 var theMailInput=document.querySelector(".email"),
     thePasswordInput=document.querySelector(".password");
-/*$(document).ready(function(){
-    
-       //
-            
-            $(".submit").on("click",function(e,theMail,thePassword){
-                
-              //  $(".submit").on("click",function(e){
-                    e.preventDefault();
-            if(theMailInput.value==theMail && thePasswordInput.value==thePassword){
-                
-                $(".start").removeClass("hide");
-                
-            }
-     //  })
+
+
+    let data=[];
+
+  
+  //data.json=data;
+  //console.log(data.json);
+$(document).ready(function(){
+
+            $(".sign-up").on("click",function(){
+              //  $.getJSON("data",function(content){
+                //console.log(content);
+                data.push({
+                    "mail":theMailInput.value,
+                    "password":thePasswordInput.value,
+                })
+                data.json=JSON.stringify(data);
+               $(theMailInput).val("");
+               $(thePasswordInput).val("");
+               
+               console.log(data);
+               console.log(data.json);
+              // data=[];
+               
+               
+                })
+       })
+
+       console.log(data);
+       console.log(data.json);     
         
+$(document).ready(function(){
+    $(".sign-in").on("click",function(){
+        data=JSON.parse(data.json);
+        //data.push(receive);
+        for(let index=0;index<data.length;index++){
+            if(theMailInput.value==data[index].mail&&thePasswordInput.value==data[index].password){
+                $(".start").show();
+            }
+        }
+        
+    })
 })
-    })*/
+
+   // })
    /* function submitInfo(e){
         "use strict";
         e.preventDefault();
