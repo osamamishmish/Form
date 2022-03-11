@@ -68,30 +68,46 @@ $(document).ready(function(){
                     "mail":theMailInput.value,
                     "password":thePasswordInput.value,
                 })
-                data.json=JSON.stringify(data);
+              //  for(let index in data){
+                  //  data.json+=JSON.stringify(data[index]);
+               // }
+                
                $(theMailInput).val("");
                $(thePasswordInput).val("");
                
                console.log(data);
-               console.log(data.json);
+            //   console.log(data.json);
               // data=[];
                
                
                 })
        })
 
-       console.log(data);
-       console.log(data.json);     
+     //  console.log(data);
+      // console.log(data.json);     
         
 $(document).ready(function(){
     $(".sign-in").on("click",function(){
-        data=JSON.parse(data.json);
-        //data.push(receive);
-        for(let index=0;index<data.length;index++){
+        for(let index in data){
             if(theMailInput.value==data[index].mail&&thePasswordInput.value==data[index].password){
                 $(".start").show();
             }
         }
+       // data=JSON.parse(data.json);
+        //data.push(receive);
+      //  $.getJSON("data.json",function(userInfo){
+        //    console.log(userInfo);
+            
+         /*   for(let index in userInfo){
+                data.push(JSON.parse(userInfo[index]));
+                console.log(data);
+              /*  */
+            //}
+            
+      //  })
+       // for(let index=0;index<data.length;index++){
+            
+        //}
         
     })
 })
