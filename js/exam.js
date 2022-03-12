@@ -47,18 +47,12 @@ var questionContent = [
  var resultArr=[];
 resultArr.length=questionContent.length;
 
-//Email and Password
-/*let theMail="osama.mishmish16@gmail.com";
-let thePassword="123456";*/
+
 var theMailInput=document.querySelector(".email"),
     thePasswordInput=document.querySelector(".password");
-
-
     let data=[];
-
-  
-  //data.json=data;
-  //console.log(data.json);
+    let usersInfo=[];
+//sign up
 $(document).ready(function(){
 
             $(".sign-up").on("click",function(){
@@ -67,61 +61,27 @@ $(document).ready(function(){
                 data.push({
                     "mail":theMailInput.value,
                     "password":thePasswordInput.value,
-                })
-              //  for(let index in data){
-                  //  data.json+=JSON.stringify(data[index]);
-               // }
-                
+                });
                $(theMailInput).val("");
                $(thePasswordInput).val("");
-               
-               console.log(data);
-            //   console.log(data.json);
-              // data=[];
-               
-               
-                })
-       })
-
-     //  console.log(data);
-      // console.log(data.json);     
-        
+               })
+              
+                })     
+  //sign in      
 $(document).ready(function(){
     $(".sign-in").on("click",function(){
         for(let index in data){
             if(theMailInput.value==data[index].mail&&thePasswordInput.value==data[index].password){
                 $(".start").show();
+                $(theMailInput).val("");
+                $(thePasswordInput).val("");
             }
         }
-       // data=JSON.parse(data.json);
-        //data.push(receive);
-      //  $.getJSON("data.json",function(userInfo){
-        //    console.log(userInfo);
-            
-         /*   for(let index in userInfo){
-                data.push(JSON.parse(userInfo[index]));
-                console.log(data);
-              /*  */
-            //}
-            
-      //  })
-       // for(let index=0;index<data.length;index++){
-            
-        //}
-        
+       
     })
 })
 
-   // })
-   /* function submitInfo(e){
-        "use strict";
-        e.preventDefault();
-        if(theMailInput.value==theMail && thePasswordInput.value==thePassword){
-            
-            $(".start").removeClass("hide");
-            
-        }
-    }*/
+  
 
 
 
