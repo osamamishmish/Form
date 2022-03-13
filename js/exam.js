@@ -64,6 +64,7 @@ $(document).ready(function(){
                 });
                $(theMailInput).val("");
                $(thePasswordInput).val("");
+               $(".guide p").text("Now Sign in to enter the exam");
                })
               
                 })     
@@ -72,6 +73,7 @@ $(document).ready(function(){
     $(".sign-in").on("click",function(){
         for(let index in data){
             if(theMailInput.value==data[index].mail&&thePasswordInput.value==data[index].password){
+                $(".guide p").hide();
                 $(".start").show();
                 $(theMailInput).val("");
                 $(thePasswordInput).val("");
